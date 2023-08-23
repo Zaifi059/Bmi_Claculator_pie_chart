@@ -21,8 +21,12 @@ Contributions are welcome! Feel free to fork this repository, make your improvem
 # This project is licensed under the MIT License.
 
 # DEMO
+# loading animation
+![pic1](https://github.com/Zaifi059/Bmi_Claculator_pie_chart/assets/125743722/07d1c2c7-5c97-41fa-b748-e06f13410bac)
+# Pie chart 
+   With visual effects
+![pic2](https://github.com/Zaifi059/Bmi_Claculator_pie_chart/assets/125743722/f3301188-55be-4c2f-a5cc-75340b04d46e)
+![pic3](https://github.com/Zaifi059/Bmi_Claculator_pie_chart/assets/125743722/d9441b0b-4adb-4909-bd67-a08772a092a6)
+![pic4](https://github.com/Zaifi059/Bmi_Claculator_pie_chart/assets/125743722/5cae13b7-11f1-4e77-b64c-4ebb9f86a605)
 
-![WhatsApp Image 2023-08-22 at 6 17 04 PM](https://github.com/Zaifi59/Bmi_Claculator_pie_chart/assets/125743722/0950eb8d-20ac-46d7-ba3a-4f256fef14e6)
-![WhatsApp Image 2023-08-22 at 6 17 02 PM](https://github.com/Zaifi59/Bmi_Claculator_pie_chart/assets/125743722/fc04482e-992f-418a-a42f-8664687a8b21)
-![WhatsApp Image 2023-08-22 at 6 17 01 PM](https://github.com/Zaifi59/Bmi_Claculator_pie_chart/assets/125743722/9e532755-9bfa-4a35-8819-0cf3cd69cd78)
-![WhatsApp Image 2023-08-22 at 6 17 00 PM](https://github.com/Zaifi59/Bmi_Claculator_pie_chart/assets/125743722/28088c42-fddd-4bc5-8c7f-7c6dca730a08)
+
