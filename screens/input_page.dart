@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
@@ -7,7 +9,6 @@ import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 
 enum Gender {
   male,
@@ -24,13 +25,13 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
   int age = 20;
-  bool isCalculating = false; // Track if calculation is in progress
+  bool isCalculating = false;
+  bool isSliderBlurred = true;
 
-  // Method to generate the loading animation widget
   Widget staggeredDotsWave() {
     return SpinKitWave(
-      color: Colors.blue, // Customize the color
-      size: 50.0, // Customize the size
+      color: Colors.blue,
+      size: 50.0,
     );
   }
 
@@ -107,24 +108,32 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      inactiveTrackColor: Colors.black38,
-                      activeTrackColor: Colors.white,
-                      thumbColor: Colors.blueAccent,
-                      overlayColor: Color(0x29EB1555),
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
-                    ),
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
+                  GestureDetector(
+                    onPanDown: (_) {
+                      setState(() {
+                        isSliderBlurred = false;
+                      });
+                    },
+                    onPanEnd: (_) {
+                      setState(() {
+                        isSliderBlurred = true;
+                      });
+                    },
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: isSliderBlurred ? 10.0 : 0.0,
+                        sigmaY: isSliderBlurred ? 10.0 : 0.0,
+                      ),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.round();
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -223,21 +232,19 @@ class _InputPageState extends State<InputPage> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.deepPurpleAccent.shade700, // Button background color
-              onPrimary: Colors.white, // Button text color
+              primary: Colors.deepPurpleAccent.shade700,
+              onPrimary: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
             ),
             onPressed: () {
               setState(() {
-                isCalculating = true; // Start the animation
+                isCalculating = true;
               });
 
-              // Set the duration to 5 seconds
               Duration animationDuration = Duration(seconds: 2);
 
-              // Wait for the animationDuration
               Future.delayed(animationDuration, () {
                 CalculatorBrain calc =
                 CalculatorBrain(height: height, weight: weight);
@@ -254,13 +261,13 @@ class _InputPageState extends State<InputPage> {
                 );
 
                 setState(() {
-                  isCalculating = false; // Stop the animation
+                  isCalculating = false;
                 });
               });
             },
             child: Text('CALCULATE'),
           ),
-          SizedBox(height: 5.0), // Spacer
+          SizedBox(height: 5.0),
           isCalculating
               ? staggeredDotsWave()
               : SizedBox(),
